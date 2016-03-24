@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title>Информация о заказе</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <h1>Информация о заказе</h1>
+        <f:view>   
+            <tr>
+            </tr>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Заказ "/>
+
+                </h2>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID заказа</td>
+                        <td> Дата создания </td> 
+                        <td> ID сотрудника </td>
+                        <td> Статус </td> 
+
+
+                    </tr> 
+                    <c:forEach items="#{headOrderBean.selectOrder()}" var="op">
+                        <tr> 
+                            <td> #{op.id_order} </td>
+                            <td> #{op.data_create} </td> 
+                            <td> #{op.id_worker} </td>
+                            <td> #{op.status} </td> 
+
+
+                        </tr> 
+                    </c:forEach>
+                </table> 
+
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID материала</td>
+                        <td> Название </td> 
+                        <td> Вес </td>
+                        <td> Производитель </td> 
+                        <td> Стоимость </td>
+                        <td> Количество </td>
+
+                    </tr> 
+                    <c:forEach items="#{headOrderBean.selectMaterial()}" var="m">
+                        <tr> 
+                            <td> #{m.id_material} </td>
+                            <td> #{m.name} </td> 
+                            <td> #{m.weight} </td>
+                            <td> #{m.manufacturer} </td> 
+                            <td> #{m.cost} </td>
+                            <td> #{m.quantity} </td>
+                        </tr> 
+                    </c:forEach>
+                </table> 
+                <br />
+                <h:commandLink value="Редактировать выбранный заказ" action="#{headOrderBean.viewSelectOrder(op.id_order)}"/>
+                <h:commandLink value="Вернуться к списку заказов" action="/HeadSelectOrders.xtml"/>
+                <br />
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Редактировать информацию о поставщике</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Редактировать информацию о поставщике"/>
+                </h2>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID поставщика</td>
+                        <td> Название </td> 
+                        <td> Контактный телефон </td>
+
+
+                    </tr> 
+                    <c:forEach items="#{adminMaterialBean.selectOptt(adminMaterialBean.id_opt)}" var="mt">
+                        <tr> 
+                            <td>(Нынешнее значение - 1)<h:inputText id="id_material" value="#{adminMaterialBean.opt.id_opt}" required="true"/></td>
+                            <td>(Нынешнее значение - ООО МатСтройОпт) <h:inputText id="name" value="#{adminMaterialBean.opt.name}" required="true" /> </td> 
+                            <td> (Нынешнее значение - 4922340956)<h:inputText id="telephoneNumber" value="#{adminMaterialBean.opt.telephoneNumber}" required="true"/></td>
+                           <td/>
+                            <td>
+                                <h:commandLink value="Изменить информацию об поставщике" action="#{adminMaterialBean.updateOpt()}" />
+                            </td>
+                        </tr> 
+                    </c:forEach>
+                </table> 
+                <div><h:commandLink value="Назад" action="/AdminSelectOptovik.xhtml" /> </div>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

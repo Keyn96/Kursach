@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Создание операции</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Создание операции"/>
+                </h2>
+                <table>
+                    <tr>
+                        <th align="left">
+                            <h:outputLabel value="Id операции" for="id_operation"/>
+                        </th>
+                        <th>
+                            <h:inputText id="id_operation" value="#{storekeeperMaterialBean.op.id_operation}" required="true">
+                            </h:inputText>
+                        </th>
+                        <th>
+                            <h:message for="id_operation" style="color:red" />
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Тип операции" for="type"/>
+                        </th>
+                        <th>
+                            <h:inputText id="type" value="#{storekeeperMaterialBean.op.type}" required="true">  
+
+
+                            </h:inputText>                                                                   
+
+                        </th>
+                        <th>
+                            <h:message for="type" style="color:red" /> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Номер накладной" for="numberInvoice"/>
+                        </th>
+                        <th>
+                            <h:inputText id="numberInvoice" value="#{storekeeperMaterialBean.op.numberInvoice}" required="true">
+                            </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="numberInvoice" style="color:red" /> 
+                        </th>
+                    </tr> 
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Стоимость" for="cost"/>
+                        </th>
+                        <th>
+                            <h:inputText id="cost" value="#{storekeeperMaterialBean.op.cost}" required="true">  </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="cost" style="color:red" /> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="ID кладовщика-составителя" for="id_worker"/>
+                        </th>
+                        <th>
+                            <h:inputText id="id_worker" value="#{storekeeperMaterialBean.op.id_worker}" required="true">  </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="id_worker" style="color:red" /> 
+                        </th>
+                    </tr>
+                </table>
+                <h1>Материалы</h1>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID материала</td>
+                        <td> Название </td> 
+                        <td> Вес </td>
+                        <td> Производитель </td> 
+                        <td> Стоимость </td>
+                        <td> Количество </td>
+
+                    </tr> 
+                    <h:selectManyCheckbox value="#{storekeeperMaterialBean.mat}">
+                        <c:forEach items="#{storekeeperMaterialBean.selectMaterials()}" var="m">
+                            <tr> 
+                                <td><f:selectItem itemValue="#{m.id_material}" /> </td>
+                                <td> #{m.id_material} </td>
+                                <td> #{m.name} </td> 
+                                <td> #{m.weight} </td>
+                                <td> #{m.manufacturer} </td> 
+                                <td> #{m.cost} </td>
+                                <td> #{m.quantity} </td>
+                            </tr> 
+                        </c:forEach>
+                    </h:selectManyCheckbox>
+                </table>                         
+                <h:commandLink value="Создать заказ" action="#{storekeeperMaterialBean.insertOperation()}"/>
+                <br/>
+                <h:commandLink value="Назад" action="/HomeStorekeeper.xtml"/>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

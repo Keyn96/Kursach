@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Редактировать информации об сотруднике</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Редактировать информации о сотруднике"/>
+                </h2>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> Id сотрудника</td>
+                        <td> ФИО </td> 
+                        <td> Опыт работы </td>
+                        <td> Зарплата </td> 
+                        <td> Имя пользователя </td>
+                        <td> Должность </td>
+                    </tr> 
+                    <c:forEach items="#{adminStorekeeperBean.selectStorekeeper(adminStorekeeperBean.id_worker)}" var="wr">
+                        <tr> 
+                            <td>(Нынешнее значение - #{wr.id_worker})<h:inputText id="id_worker" value="#{adminStorekeeperBean.w.id_worker}" required="true"/></td>
+                            <td>(Нынешнее значение - #{wr.fio}) <h:inputText id="fio" value="#{adminStorekeeperBean.w.fio}" required="true" /> </td> 
+                            <td> (Нынешнее значение - #{wr.work_exp})<h:inputText id="work_exp" value="#{adminStorekeeperBean.w.work_exp}" required="true"/></td>
+                            <td>(Нынешнее значение - #{wr.salary}) <h:inputText id="salary" value="#{adminStorekeeperBean.w.salary}" required="true"/></td> 
+                            <td>(Нынешнее значение - #{wr.login})<h:inputText id="login" value="#{adminStorekeeperBean.w.login}" required="true"/></td>
+                            <td>(Нынешнее значение - #{wr.position})<h:inputText id="position" value="#{adminStorekeeperBean.w.position}" required="true"/></td>
+
+                            <td>
+                                <h:commandLink value="Изменить информацию о сотруднике" action="#{adminStorekeeperBean.updateStorekeeper()}"/>
+                            </td>
+                        </tr> 
+                    </c:forEach>
+                </table> 
+                <div><h:commandLink value="Назад" action="/AdminEditStorekeeper.xhtml" /> </div>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
