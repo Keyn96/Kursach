@@ -83,25 +83,20 @@ public class StorekeeperMaterialBean implements Serializable{
         return "/StorekeeperEditMaterial.xhtml";
     }
 
-    public List<Material> selectMaterial(int id_material) {
+    public Material selectMaterial(int id_material) {
         return sda.selectMaterial(id_material);
     }
 
     public String updateMaterial() throws SQLException {
-        if (sda.updateMaterial(m)) {
+        sda.updateMaterial(m);
             return "/StorekeeperSelectMaterial.xhtml";
-        } else {
-            return "/Error";
-        }
+        
     }
 
     public String insertOperation() throws SQLException {
-        if (sda.createOperation(op, mat)) {
+        sda.createOperation(op, mat);
             return "/HomeStorekeeper.xhtml";
-        } else {
-            
-            return "/Error";
-        }
+        
     }
 
 }

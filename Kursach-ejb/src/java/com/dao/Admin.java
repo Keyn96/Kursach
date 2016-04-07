@@ -6,91 +6,101 @@
 package com.dao;
 
 import com.model.Material;
-import com.model.Optovik;
+import com.modelDB2.Supplier;
 import com.model.Worker;
+import com.modelDB2.Materialorder;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author НР
  */
 @Stateless
-public class Admin implements AdminInt{
+public class Admin implements AdminInt {
 
+    private Dao dao;
     @Override
-    public boolean createMaterial(Material material) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createMaterial(Material material) {
+        dao.createMaterial(material);
+        Materialorder mat=new Materialorder();
+        mat.setName(material.getName());
+        mat.setCost(material.getCost());
+        mat.setQuantity(10000);
+        dao.createMaterialorder(mat);
     }
 
     @Override
-    public boolean createOptovik(Optovik optovik) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createSupplier(Supplier supplier) {
+        dao.createSupplier(supplier);
     }
 
     @Override
-    public boolean createStorekeeper(Worker worker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createStorekeeper(Worker worker) {
+        dao.createWorker(worker);
     }
 
     @Override
-    public boolean updateMaterial(Material material) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateMaterial(Material material) {
+        dao.updateMaterial(material);
     }
 
     @Override
-    public boolean updateWorker(Worker worker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean updateOptovik(Optovik optovik) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateWorker(Worker worker) {
+        dao.updateWorker(worker);
     }
 
     @Override
     public List<Material> selectMaterials() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.selectMaterials();
     }
 
     @Override
-    public List<Material> selectMaterial(int id_material) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Optovik> selectOptoviks() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Optovik> selectOptovik(int id_opt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Material selectMaterial(int id_material) {
+        return dao.selectMaterial(id_material);
     }
 
     @Override
     public List<Worker> selectWorkers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.selectWorkers();
     }
 
     @Override
-    public List<Worker> selectWorker(int id_worker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Worker selectWorker(int id_worker) {
+       return dao.selectWorker(id_worker);
     }
 
     @Override
-    public boolean deleteMaterial(int id_material) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteMaterial(int id_material) {
+        dao.deleteMaterial(id_material);
     }
 
     @Override
-    public boolean deleteOptovik(int id_optovik) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteStorekeeper(int id_worker) {
+        dao.deleteWorker(id_worker);
     }
 
     @Override
-    public boolean deleteStorekeeper(int id_worker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateSupplier(Supplier supplier) {
+        dao.updateSupplier(supplier);
     }
-    
+
+    @Override
+    public List<Supplier> selectSuppliers() {
+        return dao.selectSuppliers();
+    }
+
+    @Override
+    public Supplier selectSupplier(int id_opt) {
+        return dao.selectSupplier(id_opt);
+    }
+
+    @Override
+    public void deleteSupplier(int id_optovik) {
+        dao.deleteSupplier(id_optovik);
+    }
+
 }

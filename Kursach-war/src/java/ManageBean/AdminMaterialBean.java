@@ -7,7 +7,7 @@ package ManageBean;
 
 import com.dao.AdminInt;
 import com.model.Material;
-import com.model.Optovik;
+import com.modelDB2.Supplier;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -51,7 +51,7 @@ public class AdminMaterialBean implements Serializable{
         this.id_material = id_material;
     }
     private int id_opt;
-    private Optovik opt;
+    private Supplier opt;
 
     public int getId_opt() {
         return id_opt;
@@ -61,20 +61,17 @@ public class AdminMaterialBean implements Serializable{
         this.id_opt = id_opt;
     }
 
-    public Optovik getOpt() {
+    public Supplier getOpt() {
         return opt;
     }
 
-    public void setOpt(Optovik opt) {
+    public void setOpt(Supplier opt) {
         this.opt = opt;
     }
     public String insertMaterial() throws SQLException {
 
-        if (adm.createMaterial(this.m)) {
+        adm.createMaterial(this.m);
             return "/AdminSelectMaterial.xhtml";
-        } else {
-            return "/Error.xhtml";
-        }
     }
 
     public String viewSelectMaterial(int id_material) {
@@ -82,58 +79,48 @@ public class AdminMaterialBean implements Serializable{
         return "/AdminEditMaterial.xhtml";
     }
 
-    public List<Material> selectMaterial(int id_material) {
+    public Material selectMaterial(int id_material) {
        return adm.selectMaterial(id_material);
     }
 
     public String updateMaterial() throws SQLException {
-        if (adm.updateMaterial(m)) {
+        adm.updateMaterial(m); 
             return "/AdminSelectMaterial.xhtml";
-        } else {
-            return "/Error.xhtml";
-        }
+        
     }
 
     public String deleteMaterial(int id_material) {
-       if (adm.deleteMaterial(id_material)) {
+       adm.deleteMaterial(id_material);
             return "/AdminSelectMaterial.xhtml";
-        } else {
-          return "/Error.xhtml";
-       }
+        
     }
     public String createOpt() throws SQLException {
 
-        if (adm.createOptovik(opt)) {
+        adm.createSupplier(opt);
             return "/AdminSelectOptovik.xhtml";
-        } else {
-            return "/Error.xhtml";
-        }
+        
     }
     public String selectOpt(int id_opt) {
         this.id_opt = id_opt;
         return "/AdminEditOptovik.xhtml";
     }
 
-    public List<Optovik> selectOptt(int id_opt) {
-       return adm.selectOptovik(id_opt);
+    public Supplier selectOptt(int id_opt) {
+       return adm.selectSupplier(id_opt);
     }
 
     public String updateOpt() throws SQLException {
-        if (adm.updateOptovik(opt)) {
+        adm.updateSupplier(opt);
             return "/AdminSelectOptovik.xhtml";
-        } else {
-            return "/Error.xhtml";
-       }
+        
     }
     public String deleteOpt(int id_opt) {
-       if (adm.deleteOptovik(id_material)) {
+       adm.deleteSupplier(id_material);
             return "/AdminSelectOptovik.xhtml";
-        } else {
-           return "/Error.xhtml";
-       }
+        
     }
     
-    public List<Optovik> selectOpts() {
-        return adm.selectOptoviks();
+    public List<Supplier> selectOpts() {
+        return adm.selectSuppliers();
     }
 }

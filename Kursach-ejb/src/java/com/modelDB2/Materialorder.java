@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.model;
+package com.modelDB2;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,17 +29,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author НР
  */
 @Entity
-@Table(name = "material")
+@Table(name = "materialorder")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Material.findAll", query = "SELECT m FROM Material m"),
-    @NamedQuery(name = "Material.findByIdMaterial", query = "SELECT m FROM Material m WHERE m.idMaterial = :idMaterial"),
-    @NamedQuery(name = "Material.findByName", query = "SELECT m FROM Material m WHERE m.name = :name"),
-    @NamedQuery(name = "Material.findByWeight", query = "SELECT m FROM Material m WHERE m.weight = :weight"),
-    @NamedQuery(name = "Material.findByManufacturer", query = "SELECT m FROM Material m WHERE m.manufacturer = :manufacturer"),
-    @NamedQuery(name = "Material.findByCost", query = "SELECT m FROM Material m WHERE m.cost = :cost"),
-    @NamedQuery(name = "Material.findByQuantity", query = "SELECT m FROM Material m WHERE m.quantity = :quantity")})
-public class Material implements Serializable {
+    @NamedQuery(name = "Materialorder.findAll", query = "SELECT m FROM Materialorder m"),
+    @NamedQuery(name = "Materialorder.findByIdMaterial", query = "SELECT m FROM Materialorder m WHERE m.idMaterial = :idMaterial"),
+    @NamedQuery(name = "Materialorder.findByName", query = "SELECT m FROM Materialorder m WHERE m.name = :name"),
+    @NamedQuery(name = "Materialorder.findByCost", query = "SELECT m FROM Materialorder m WHERE m.cost = :cost"),
+    @NamedQuery(name = "Materialorder.findByQuantity", query = "SELECT m FROM Materialorder m WHERE m.quantity = :quantity")})
+public class Materialorder implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,18 +47,9 @@ public class Material implements Serializable {
     private Integer idMaterial;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 45)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "weight")
-    private int weight;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "manufacturer")
-    private String manufacturer;
     @Basic(optional = false)
     @NotNull
     @Column(name = "cost")
@@ -67,21 +58,22 @@ public class Material implements Serializable {
     @NotNull
     @Column(name = "quantity")
     private int quantity;
-    @ManyToMany(mappedBy = "materialCollection")
-    private Collection<Operation> operationCollection;
+    @JoinTable(name = "order_material", joinColumns = {
+        @JoinColumn(name = "id_material", referencedColumnName = "id_material")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_order", referencedColumnName = "id_order")})
+    @ManyToMany
+    private Collection<Orders> ordersCollection;
 
-    public Material() {
+    public Materialorder() {
     }
 
-    public Material(Integer idMaterial) {
+    public Materialorder(Integer idMaterial) {
         this.idMaterial = idMaterial;
     }
 
-    public Material(Integer idMaterial, String name, int weight, String manufacturer, int cost, int quantity) {
+    public Materialorder(Integer idMaterial, String name, int cost, int quantity) {
         this.idMaterial = idMaterial;
         this.name = name;
-        this.weight = weight;
-        this.manufacturer = manufacturer;
         this.cost = cost;
         this.quantity = quantity;
     }
@@ -102,22 +94,6 @@ public class Material implements Serializable {
         this.name = name;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
     public int getCost() {
         return cost;
     }
@@ -135,14 +111,13 @@ public class Material implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Operation> getOperationCollection() {
-        return operationCollection;
+    public Collection<Orders> getOrdersCollection() {
+        return ordersCollection;
     }
 
-    public void setOperationCollection(Collection<Operation> operationCollection) {
-        this.operationCollection = operationCollection;
+    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+        this.ordersCollection = ordersCollection;
     }
-
 
     @Override
     public int hashCode() {
@@ -154,10 +129,10 @@ public class Material implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Material)) {
+        if (!(object instanceof Materialorder)) {
             return false;
         }
-        Material other = (Material) object;
+        Materialorder other = (Materialorder) object;
         if ((this.idMaterial == null && other.idMaterial != null) || (this.idMaterial != null && !this.idMaterial.equals(other.idMaterial))) {
             return false;
         }
@@ -166,7 +141,7 @@ public class Material implements Serializable {
 
     @Override
     public String toString() {
-        return "com.model.Material[ idMaterial=" + idMaterial + " ]";
+        return "com.modelDB2.Materialorder[ idMaterial=" + idMaterial + " ]";
     }
     
 }

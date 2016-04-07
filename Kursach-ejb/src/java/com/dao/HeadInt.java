@@ -7,7 +7,8 @@ package com.dao;
 
 import com.model.Material;
 import com.model.Operation;
-import com.model.Order;
+import com.modelDB2.Materialorder;
+import com.modelDB2.Orders;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -18,10 +19,11 @@ import javax.ejb.Local;
 @Local
 public interface HeadInt {
     List<Operation> selectOperations();
-    List<Operation> selectOperation(int id_operation);
-    List<Order> selectOrders();
-    List<Order> selectOrder(int id_order);
-    boolean updateOrder(Order order);
+    Operation selectOperation(int id_operation);
+    List<Orders> selectOrders();
+    Orders selectOrder(int id_order);
+    void updateOrder(Orders order);
     List<Material> selectOperation_Material(int id_operation);
-    List<Material> selectOrder_Material(int id_order);
+    List<Materialorder> selectOrder_Material(int id_order);
+    void insertOrder(Orders order);
 }

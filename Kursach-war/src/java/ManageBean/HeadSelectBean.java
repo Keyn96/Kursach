@@ -9,7 +9,7 @@ package ManageBean;
 //import com.model.*;
 import com.dao.HeadInt;
 import com.model.Operation;
-import com.model.Order;
+import com.model.Orders;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -33,7 +33,7 @@ public class HeadSelectBean implements Serializable{
     public HeadSelectBean() {
     }
 
-    public List<Order> selectOrders() {
+    public List<Orders> selectOrders() {
         return hdm.selectOrders();
     }
 

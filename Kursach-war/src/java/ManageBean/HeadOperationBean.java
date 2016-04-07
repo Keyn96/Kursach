@@ -60,7 +60,7 @@ public class HeadOperationBean implements Serializable{
         return hdm.selectOperations();
     }
 
-    public List<Operation> selectOperation(int id_operation) {
+    public Operation selectOperation(int id_operation) {
         return hdm.selectOperation(id_operation);
     }
 

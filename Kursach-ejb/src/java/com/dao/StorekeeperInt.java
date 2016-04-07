@@ -16,9 +16,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface StorekeeperInt {
-    boolean createOperation(Operation operation, int[] materials);
-    boolean updateMaterial(Material material);
+    void createOperation(Operation operation, int[] materials);
+    void updateMaterial(Material material);
     List<Material> selectMaterials();
-    List<Material> selectMaterial(int id_material);
+    Material selectMaterial(int id_material);
     
 }

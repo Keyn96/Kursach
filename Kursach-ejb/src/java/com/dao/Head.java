@@ -7,9 +7,12 @@ package com.dao;
 
 import com.model.Material;
 import com.model.Operation;
-import com.model.Order;
+import com.modelDB2.Materialorder;
+import com.modelDB2.Orders;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -18,39 +21,61 @@ import javax.ejb.Stateless;
 @Stateless
 public class Head implements HeadInt{
 
+
+    private Dao dao;
     @Override
     public List<Operation> selectOperations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.selectOperations();
     }
 
     @Override
-    public List<Operation> selectOperation(int id_operation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Operation selectOperation(int id_operation) {
+        return dao.selectOperation(id_operation);
     }
 
     @Override
-    public List<Order> selectOrders() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Orders> selectOrders() {
+        return dao.selectOrders();
     }
 
     @Override
-    public List<Order> selectOrder(int id_order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Orders selectOrder(int id_order) {
+        return dao.selectOrder(id_order);
     }
 
     @Override
-    public boolean updateOrder(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateOrder(Orders order) {
+        dao.updateOrder(order);
     }
 
     @Override
     public List<Material> selectOperation_Material(int id_operation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Operation oper=dao.selectOperation(id_operation);
+        List<Material> mats=(List<Material>)oper.getMaterialCollection();
+        return mats;
     }
 
     @Override
-    public List<Material> selectOrder_Material(int id_order ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Materialorder> selectOrder_Material(int id_order ) {
+        Orders ord=dao.selectOrder(id_order);
+        List<Materialorder> mats=(List<Materialorder>)ord.getMaterialorderCollection();
+        return mats;
     }
-    
+    @Override
+    public void insertOrder(Orders order)
+    {
+        Orders ord=dao.createOrder(order);
+        List<Material> mat=dao.selectMaterials();
+        for(Material m:mat)
+        {
+            if(m.getQuantity()<500)
+            {
+               Materialorder mr=new Materialorder();
+               mr=dao.selectMaterialorder(m.getName());
+               List<Orders> orders=(List<Orders>)mr.getOrdersCollection();
+               orders.add(ord);
+               mr.setOrdersCollection(orders);               
+            }
+        }
+    }
 }

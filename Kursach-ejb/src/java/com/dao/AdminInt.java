@@ -6,7 +6,7 @@
 package com.dao;
 
 import com.model.Material;
-import com.model.Optovik;
+import com.modelDB2.Supplier;
 import com.model.Worker;
 import java.util.List;
 import javax.ejb.Local;
@@ -17,27 +17,27 @@ import javax.ejb.Local;
  */
 @Local
 public interface AdminInt {
-    boolean createMaterial(Material material);
-    boolean createOptovik(Optovik optovik);
-    boolean createStorekeeper(Worker worker);
-    boolean updateMaterial(Material material);
+    void createMaterial(Material material);
+    void createSupplier(Supplier supplier);
+    void createStorekeeper(Worker worker);
+    void updateMaterial(Material material);
 
-    boolean updateWorker(Worker worker);
+    void updateWorker(Worker worker);
 
-    boolean updateOptovik(Optovik optovik);
+    void updateSupplier(Supplier supplier);
 
     List<Material> selectMaterials();
 
-    List<Material> selectMaterial(int id_material);
+    Material selectMaterial(int id_material);
 
-    List<Optovik> selectOptoviks();
+    List<Supplier> selectSuppliers();
 
-    List<Optovik> selectOptovik(int id_opt);
+    Supplier selectSupplier(int id_opt);
 
     List<Worker> selectWorkers();
 
-    List<Worker> selectWorker(int id_worker);
-    boolean deleteMaterial(int id_material);
-    boolean deleteOptovik(int id_optovik);
-    boolean deleteStorekeeper(int id_worker);
+    Worker selectWorker(int id_worker);
+    void deleteMaterial(int id_material);
+    void deleteSupplier(int id_optovik);
+    void deleteStorekeeper(int id_worker);
 }

@@ -52,11 +52,9 @@ public class AdminStorekeeperBean implements Serializable{
     }
 
     public String insertStorekeeper() throws SQLException {
-        if (adm.createStorekeeper(w)) {
+        adm.createStorekeeper(w);
             return "/AdminSelectStorekeeper.xhtml";
-       } else {
-            return "/Error.xhtml";
-       }
+       
     }
 
     public String viewSelectWorker(int id_worker) {
@@ -64,25 +62,21 @@ public class AdminStorekeeperBean implements Serializable{
         return "/AdminEditStorekeeper.xhtml";
     }
 
-    public List<Worker> selectStorekeeper(int id_material) {
+    public Worker selectStorekeeper(int id_material) {
         return adm.selectWorker(id_material);
     }
 
     public String updateStorekeeper() throws SQLException {
 
-        if (adm.updateWorker(w)) {
+        adm.updateWorker(w);
             return "/AdminSelectStorekeeper";
-        } else {
-            return "/Error.xhtml";
-        }
+        
     }
 
     public String deleteStorekeeper(int id_worker) {
-        if (adm.deleteStorekeeper(id_worker)) {
+        adm.deleteStorekeeper(id_worker);
             return "/AdminSelectStorekeeper.xhtml";
-        } else {
-            return "/Error.xhtml";
-        }
+        
     }
 
 }
