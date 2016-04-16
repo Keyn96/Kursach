@@ -34,7 +34,7 @@ public interface AdminInt {
 
     Supplier selectSupplier(int id_opt);
 
-    List<Worker> selectWorkers();
+    List<Worker> selectWorkers()throws Exception;
 
     Worker selectWorker(int id_worker);
     void deleteMaterial(int id_material);

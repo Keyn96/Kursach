@@ -13,15 +13,15 @@ import com.modelDB2.Orders;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.persistence.criteria.Order;
 
 /**
  *
  * @author НР
  */
 @Named(value="headOrderBean")
-
+@RequestScoped
 public class HeadOrderBean implements Serializable{
 @EJB
     private HeadInt hdm;

@@ -64,7 +64,7 @@ public class Admin implements AdminInt {
     }
 
     @Override
-    public List<Worker> selectWorkers() {
+    public List<Worker> selectWorkers() throws Exception{
         return dao.selectWorkers();
     }
 

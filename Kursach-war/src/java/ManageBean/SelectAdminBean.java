@@ -8,12 +8,13 @@ package ManageBean;
 //import com.dao.*;
 //import com.model.*;
 import com.dao.AdminInt;
+import com.dao.Dao;
 import com.model.Material;
 import com.model.Worker;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -21,20 +22,20 @@ import javax.inject.Named;
  * @author НР
  */
 @Named(value="selectAdminBean")
-
+@RequestScoped
 public class SelectAdminBean implements Serializable{
 
    @EJB
          private  AdminInt adm;
-
+   private Dao dao;
     /**
      * Creates a new instance of SelectAdminBean
      */
     public SelectAdminBean() {
     }
 
-    public List<Worker> selectWorkers() {
-        return adm.selectWorkers();
+    public List<Worker> selectWorkers() throws Exception {
+        return dao.selectWorkers();
     }
 
     public List<Material> selectMaterials() {

@@ -12,7 +12,7 @@ import com.model.Operation;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -20,7 +20,7 @@ import javax.inject.Named;
  * @author НР
  */
 @Named(value="headOperationBean")
-
+@RequestScoped
 public class HeadOperationBean implements Serializable{
 @EJB
     private HeadInt hdm;

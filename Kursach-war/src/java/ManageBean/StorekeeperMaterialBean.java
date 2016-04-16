@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -22,7 +22,7 @@ import javax.inject.Named;
  * @author НР
  */
 @Named(value="storekeeperMaterialBean")
-
+@RequestScoped
 public class StorekeeperMaterialBean implements Serializable{
 
     @EJB

@@ -11,6 +11,7 @@ import com.model.Worker;
 import com.modelDB2.Materialorder;
 import com.modelDB2.Orders;
 import com.modelDB2.Supplier;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,9 +23,10 @@ import javax.persistence.TypedQuery;
  * @author НР
  */
 public class Dao {
-    @PersistenceContext(unitName = "LabJPA4-ejbPU2")
+    @PersistenceContext(unitName = "Kursach-ejbPU")
     private EntityManager em;
-    
+    @PersistenceContext(unitName = "Kursach-ejbPU2")
+    private EntityManager em1;
     
     public void createMaterial(Material material) {
         em.persist(material);
@@ -47,24 +49,24 @@ public class Dao {
         em.remove(em.getReference(Material.class, id_material));
     }
     public void createSupplier(Supplier supplier) {
-        em.persist(supplier);
-        em.flush();
+        em1.persist(supplier);
+        em1.flush();
     }
     public void updateSupplier(Supplier supplier) {
-        em.getTransaction().begin();
-        em.merge(supplier);
-        em.getTransaction().commit();
+        em1.getTransaction().begin();
+        em1.merge(supplier);
+        em1.getTransaction().commit();
     }
     public List<Supplier> selectSuppliers() {
-         TypedQuery<Supplier> namedQuery=em.createNamedQuery("Supplier.findAll", Supplier.class);
+         TypedQuery<Supplier> namedQuery=em1.createNamedQuery("Supplier.findAll", Supplier.class);
         return namedQuery.getResultList();
     }
 
     public Supplier selectSupplier(int id_supplier) {
-       return em.find(Supplier.class, id_supplier);
+       return em1.find(Supplier.class, id_supplier);
     }
     public void deleteSupplier(int id_supplier) {
-        em.remove(em.getReference(Supplier.class, id_supplier));
+        em1.remove(em1.getReference(Supplier.class, id_supplier));
     }
     public void createWorker(Worker worker) {
         em.persist(worker);
@@ -75,9 +77,11 @@ public class Dao {
         em.merge(worker);
         em.getTransaction().commit();
     }
-    public List<Worker> selectWorkers() {
+    public List<Worker> selectWorkers() throws Exception {
          TypedQuery<Worker> namedQuery=em.createNamedQuery("Worker.findAll", Worker.class);
-        return namedQuery.getResultList();
+        List<Worker> list =new ArrayList();
+        list=namedQuery.getResultList();
+        return list;
     }
 
     public Worker selectWorker(int id_worker) {
@@ -120,11 +124,11 @@ public class Dao {
        return em.find(Orders.class, id_order);
     }
     public void createMaterialorder(Materialorder material) {
-        em.persist(material);
-        em.flush();
+        em1.persist(material);
+        em1.flush();
     }
     public Materialorder selectMaterialorder(String nam) {
-        Query namedQuery=em.createNamedQuery("Materialorder.findByName", Materialorder.class);
+        Query namedQuery=em1.createNamedQuery("Materialorder.findByName", Materialorder.class);
         namedQuery.setParameter("name", nam);
         return (Materialorder)namedQuery.getSingleResult();
     }

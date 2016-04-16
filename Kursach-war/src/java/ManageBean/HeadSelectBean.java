@@ -9,11 +9,11 @@ package ManageBean;
 //import com.model.*;
 import com.dao.HeadInt;
 import com.model.Operation;
-import com.model.Orders;
+import com.modelDB2.Orders;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -21,7 +21,7 @@ import javax.inject.Named;
  * @author НР
  */
 @Named(value="headSelectBean")
-
+@RequestScoped
 public class HeadSelectBean implements Serializable{
 
    @EJB
