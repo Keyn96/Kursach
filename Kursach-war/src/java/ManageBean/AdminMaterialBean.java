@@ -42,14 +42,14 @@ public class AdminMaterialBean implements Serializable{
     public void setM(Material m) {
         this.m = m;
     }
-    private int id_material;
+    private int idMaterial;
 
     public int getId_material() {
-        return id_material;
+        return idMaterial;
     }
 
-    public void setId_material(int id_material) {
-        this.id_material = id_material;
+    public void setId_material(int idMaterial) {
+        this.idMaterial = idMaterial;
     }
     private int id_opt;
     private Supplier opt;
@@ -75,23 +75,23 @@ public class AdminMaterialBean implements Serializable{
             return "/AdminSelectMaterial.xhtml";
     }
 
-    public String viewSelectMaterial(int id_material) {
-        this.id_material = id_material;
+    public String viewSelectMaterial(int idMaterial) {
+        this.m = adm.selectMaterial(idMaterial);
         return "/AdminEditMaterial.xhtml";
     }
 
-    public Material selectMaterial(int id_material) {
-       return adm.selectMaterial(id_material);
+    public Material selectMaterial(int idMaterial) {
+       return adm.selectMaterial(idMaterial);
     }
 
     public String updateMaterial() throws SQLException {
-        adm.updateMaterial(m); 
+        adm.updateMaterial(getM(),getId_material()); 
             return "/AdminSelectMaterial.xhtml";
         
     }
 
-    public String deleteMaterial(int id_material) {
-       adm.deleteMaterial(id_material);
+    public String deleteMaterial(int idMaterial) {
+       adm.deleteMaterial(idMaterial);
             return "/AdminSelectMaterial.xhtml";
         
     }
@@ -101,13 +101,13 @@ public class AdminMaterialBean implements Serializable{
             return "/AdminSelectOptovik.xhtml";
         
     }
-    public String selectOpt(int id_opt) {
+    public String selectOpt(int id) {
         this.id_opt = id_opt;
         return "/AdminEditOptovik.xhtml";
     }
 
-    public Supplier selectOptt(int id_opt) {
-       return adm.selectSupplier(id_opt);
+    public Supplier selectOptt(int id) {
+       return adm.selectSupplier(id);
     }
 
     public String updateOpt() throws SQLException {
@@ -115,8 +115,8 @@ public class AdminMaterialBean implements Serializable{
             return "/AdminSelectOptovik.xhtml";
         
     }
-    public String deleteOpt(int id_opt) {
-       adm.deleteSupplier(id_material);
+    public String deleteOpt(int id) {
+       adm.deleteSupplier(id);
             return "/AdminSelectOptovik.xhtml";
         
     }

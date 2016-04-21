@@ -29,10 +29,10 @@
                     </tr> 
                     <c:forEach items="#{headSelectBean.selectOrders()}" var="op">
                         <tr> 
-                            <td> #{op.id_order} </td>
-                            <td> #{op.data_create} </td> 
+                            <td> #{op.idOrder} </td>
+                            <td> #{op.dateCreate} </td> 
                             <td> #{op.status} </td> 
-                            <td><h:commandLink value="Редактировать информацию о заказе" action="#{headOrderBean.viewSelectOrder(op.id_order)}"/></td>
+                            <td><h:commandLink value="Редактировать информацию о заказе" action="#{headOrderBean.viewSelectOrder(op.idOrder)}"/></td>
 
                         </tr> 
                     </c:forEach>

@@ -25,14 +25,14 @@
                     </tr> 
                     <c:forEach items="#{selectAdminBean.selectOpts()}" var="m">
                         <tr> 
-                            <td> #{opt.id_optl} </td>
+                            <td> #{opt.id} </td>
                             <td> #{opt.name} </td> 
                             <td> #{opt.telephoneNumber} </td>
                             <td><div>
-                                    <h:commandLink value="Редактировать информацию о поставщике"  action="#{adminMaterialBean.selectOpt(opt.id_opt)}" />
+                                    <h:commandLink value="Редактировать информацию о поставщике"  action="#{adminMaterialBean.selectOpt(opt.id)}" />
                                 </div></td>
                             <td>    <div>
-                                    <h:commandLink value="Удалить поставщика"  action="#{adminMaterialBean.deleteOpt(opt.id_opt)}" />
+                                    <h:commandLink value="Удалить поставщика"  action="#{adminMaterialBean.deleteOpt(opt.id)}" />
                                 </div></td>
                         </tr> 
                     </c:forEach>

@@ -31,12 +31,12 @@
                     </tr> 
                     <c:forEach items="#{headSelectBean.selectOperations()}" var="op">
                         <tr> 
-                            <td> #{op.id_operation} </td>
+                            <td> #{op.idOperation} </td>
                             <td> #{op.type} </td> 
                             <td> #{op.numberInvoice} </td>
                             <td> #{op.cost} </td> 
-                            <td> #{op.id_worker} </td>
-                            <td><h:commandLink value="Просмотр дополнительной информации об операции"  action="#{headOperationBean.viewSelectOperation(op.id_operation)}"/></td>
+                            <td> #{op.idWorker} </td>
+                            <td><h:commandLink value="Просмотр дополнительной информации об операции"  action="#{headOperationBean.viewSelectOperation(op.idOperation)}"/></td>
                         </tr> 
                     </c:forEach>
                 </table>         

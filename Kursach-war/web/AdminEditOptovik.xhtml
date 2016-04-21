@@ -24,7 +24,7 @@
                     </tr> 
                     <c:forEach items="#{adminMaterialBean.selectOptt(adminMaterialBean.id_opt)}" var="mt">
                         <tr> 
-                            <td>(Нынешнее значение - 1)<h:inputText id="id_material" value="#{adminMaterialBean.opt.id_opt}" required="true"/></td>
+                            <td>(Нынешнее значение - 1)<h:inputText id="id" value="#{adminMaterialBean.opt.id}" required="true"/></td>
                             <td>(Нынешнее значение - ООО МатСтройОпт) <h:inputText id="name" value="#{adminMaterialBean.opt.name}" required="true" /> </td> 
                             <td> (Нынешнее значение - 4922340956)<h:inputText id="telephoneNumber" value="#{adminMaterialBean.opt.telephoneNumber}" required="true"/></td>
                            <td/>

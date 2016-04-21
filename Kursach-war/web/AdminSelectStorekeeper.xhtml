@@ -29,17 +29,17 @@
                     </tr> 
                     <c:forEach items="#{selectAdminBean.selectWorkers()}" var="w">
                         <tr> 
-                            <td> #{w.id_worker} </td>
+                            <td> #{w.idWorker} </td>
                             <td> #{w.fio} </td> 
-                            <td> #{w.work_exp} </td>
+                            <td> #{w.workExp} </td>
                             <td> #{w.salary} </td> 
                             <td> #{w.login} </td>
                             <td> #{w.position} </td>
                             <td><div>
-                                    <h:commandLink value="Редактировать информацию о сотруднике" action="#{adminStorekeeperBean.viewSelectWorker(w.id_worker)}"/>
+                                    <h:commandLink value="Редактировать информацию о сотруднике" action="#{adminStorekeeperBean.viewSelectWorker(w.idWorker)}"/>
                                 </div></td>
                             <td><div>
-                                    <h:commandLink value="Удалить выбранного сотрудника" action="#{adminStorekeeperBean.deleteStorekeeper(w.id_worker)}"/>
+                                    <h:commandLink value="Удалить выбранного сотрудника" action="#{adminStorekeeperBean.deleteStorekeeper(w.idWorker)}"/>
                                 </div></td>
                         </tr> 
                     </c:forEach>

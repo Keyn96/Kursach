@@ -40,15 +40,17 @@ public class AdminStorekeeperBean implements Serializable{
     public void setW(Worker w) {
         this.w = w;
     }
-    private int id_worker;
+    private int idWorker;
 
-    public int getId_worker() {
-        return id_worker;
+    public int getIdWorker() {
+        return idWorker;
     }
 
-    public void setId_worker(int id_worker) {
-        this.id_worker = id_worker;
+    public void setIdWorker(int idWorker) {
+        this.idWorker = idWorker;
     }
+
+ 
 
     public String insertStorekeeper() throws SQLException {
         adm.createStorekeeper(w);
@@ -56,13 +58,13 @@ public class AdminStorekeeperBean implements Serializable{
        
     }
 
-    public String viewSelectWorker(int id_worker) {
-        this.id_worker = id_worker;
+    public String viewSelectWorker(int idWorker) {
+        this.idWorker = idWorker;
         return "/AdminEditStorekeeper.xhtml";
     }
 
-    public Worker selectStorekeeper(int id_material) {
-        return adm.selectWorker(id_material);
+    public Worker selectStorekeeper(int idWorker) {
+        return adm.selectWorker(idWorker);
     }
 
     public String updateStorekeeper() throws SQLException {
@@ -72,8 +74,8 @@ public class AdminStorekeeperBean implements Serializable{
         
     }
 
-    public String deleteStorekeeper(int id_worker) {
-        adm.deleteStorekeeper(id_worker);
+    public String deleteStorekeeper(int idWorker) {
+        adm.deleteStorekeeper(idWorker);
             return "/AdminSelectStorekeeper.xhtml";
         
     }

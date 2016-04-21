@@ -7,6 +7,7 @@ package ManageBean;
 
 //import com.dao.*;
 //import com.model.*;
+
 import com.dao.AdminInt;
 import com.dao.Dao;
 import com.model.Material;
@@ -26,8 +27,7 @@ import javax.inject.Named;
 public class SelectAdminBean implements Serializable{
 
    @EJB
-         private  AdminInt adm;
-   private Dao dao;
+         private AdminInt adm;
     /**
      * Creates a new instance of SelectAdminBean
      */
@@ -35,7 +35,7 @@ public class SelectAdminBean implements Serializable{
     }
 
     public List<Worker> selectWorkers() throws Exception {
-        return dao.selectWorkers();
+        return adm.selectWorkers();
     }
 
     public List<Material> selectMaterials() {

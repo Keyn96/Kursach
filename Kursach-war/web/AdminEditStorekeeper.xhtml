@@ -23,11 +23,11 @@
                         <td> Имя пользователя </td>
                         <td> Должность </td>
                     </tr> 
-                    <c:forEach items="#{adminStorekeeperBean.selectStorekeeper(adminStorekeeperBean.id_worker)}" var="wr">
+                    <c:forEach items="#{adminStorekeeperBean.selectStorekeeper(adminStorekeeperBean.idWorker)}" var="wr">
                         <tr> 
-                            <td>(Нынешнее значение - #{wr.id_worker})<h:inputText id="id_worker" value="#{adminStorekeeperBean.w.id_worker}" required="true"/></td>
+                            <td>(Нынешнее значение - #{wr.idWorker})<h:inputText id="id_worker" value="#{adminStorekeeperBean.w.idWorker}" required="true"/></td>
                             <td>(Нынешнее значение - #{wr.fio}) <h:inputText id="fio" value="#{adminStorekeeperBean.w.fio}" required="true" /> </td> 
-                            <td> (Нынешнее значение - #{wr.work_exp})<h:inputText id="work_exp" value="#{adminStorekeeperBean.w.work_exp}" required="true"/></td>
+                            <td> (Нынешнее значение - #{wr.workExp})<h:inputText id="work_exp" value="#{adminStorekeeperBean.w.workExp}" required="true"/></td>
                             <td>(Нынешнее значение - #{wr.salary}) <h:inputText id="salary" value="#{adminStorekeeperBean.w.salary}" required="true"/></td> 
                             <td>(Нынешнее значение - #{wr.login})<h:inputText id="login" value="#{adminStorekeeperBean.w.login}" required="true"/></td>
                             <td>(Нынешнее значение - #{wr.position})<h:inputText id="position" value="#{adminStorekeeperBean.w.position}" required="true"/></td>

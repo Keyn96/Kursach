@@ -9,39 +9,19 @@
         <link rel="stylesheet" href="krcss.css" type="text/css"></link>
     </h:head>
     <h:body>
-        <f:view>
-            <h:form>
+        <h:form>
                 <h2>
                     <h:outputLabel value="Редактировать информации об материале"/>
                 </h2>
-                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
-                    <tr>
-                        <td> ID материала</td>
-                        <td> Название </td> 
-                        <td> Вес </td>
-                        <td> Производитель </td> 
-                        <td> Стоимость </td>
-                        <td> Количество </td>
+                <input type="hidden" name="idMaterial" value="#{adminMaterialBean.m.idMaterial}"/>
 
-                    </tr> 
-                    <c:forEach items="#{adminMaterialBean.selectMaterial(adminMaterialBean.id_material)}" var="mt">
-                        <tr> 
-                            <td>(Нынешнее значение - #{mt.id_material})<h:inputText id="id_material" value="#{adminMaterialBean.m.id_material}" required="true"/></td>
-                            <td>(Нынешнее значение - #{mt.name}) <h:inputText id="name" value="#{adminMaterialBean.m.name}" required="true" /> </td> 
-                            <td> (Нынешнее значение - #{mt.weight})<h:inputText id="weight" value="#{adminMaterialBean.m.weight}" required="true"/></td>
-                            <td>(Нынешнее значение - #{mt.manufacturer}) <h:inputText id="manufacturer" value="#{adminMaterialBean.m.manufacturer}" required="true"/></td> 
-                            <td>(Нынешнее значение - #{mt.cost})<h:inputText id="cost" value="#{adminMaterialBean.m.cost}" required="true"/></td>
-                            <td>(Нынешнее значение - #{mt.quantity})<h:inputText id="quantity" value="#{adminMaterialBean.m.quantity}" required="true"/></td>
-                            <td/>
-                            <td>
-                                <h:commandLink value="Изменить информацию об материале" action="#{adminMaterialBean.updateMaterial()}"/>
-                            </td>
-                        </tr> 
-                    </c:forEach>
-                </table> 
+                Название        <h:inputText id="name" value="#{adminMaterialBean.m.name}" required="true"/> <br/>
+                Вес             <h:inputText id="weight" value="#{adminMaterialBean.m.weight}" required="true"/><br/>
+                Производитель   <h:inputText id="manufacturer" value="#{adminMaterialBean.m.manufacturer}" required="true"/><br/>
+                Стоимость        <h:inputText id="cost" value="#{adminMaterialBean.m.cost}" required="true"/><br/>
+                Количество      <h:inputText id="quantity" value="#{adminMaterialBean.m.quantity}" required="true"/><br/>
+<h:commandLink value="Изменить информацию о материале" action="#{adminMaterialBean.updateMaterial()}" />
                 <div><h:commandLink value="Назад" action="/AdminSelectMaterial.xhtml" /> </div>
-            </h:form>
-        </f:view>
+        </h:form>
     </h:body>
 </html>
-
