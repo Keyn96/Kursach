@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Редактировать информацию об заказе</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Редактировать информации об заказе"/>
+                </h2>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> Id заказа</td>
+                        <td> Дата создания </td> 
+                        <td> Поставщик </td>
+                        <td> Статус </td> 
+
+                    </tr> 
+                        <tr> 
+                            <td>(Нынешнее значение - #{ord.idOrder})</td>
+                            <td>(Нынешнее значение - #{ord.dataCreate})  </td> 
+                            <td> (Нынешнее значение - #{ord.opt})</td>
+                            <td>(Нынешнее значение - #{ord.status})<br/> 
+                            <h:selectManyListbox value="#{ord.status}">
+                                <f:selectItem itemValue="1" itemLabel="Не просмотрен"/>
+                                <f:selectItem itemValue="2" itemLabel="Утвержден"/>
+                                <f:selectItem itemValue="2" itemLabel="Не утвержден"/>
+                            </h:selectManyListbox>
+                            </td>
+                            <td>
+                                <h:commandLink value="Изменить информацию об материале" action="#{headOrderBean.updateOrder()}"/>
+                            </td>
+                        </tr> 
+                </table>
+                <br/>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID материала</td>
+                        <td> Название </td> 
+                        <td> Вес </td>
+                        <td> Производитель </td> 
+                        <td> Стоимость </td>
+                        <td> Количество </td>
+
+                    </tr> 
+                    <c:forEach items="#{headOrderBean.selectMaterial(ord.idOrder)}" var="m">
+                        <tr> 
+                            <td> #{m.idMaterial} </td>
+                            <td> #{m.name} </td> 
+                            <td> #{m.cost} </td>
+                            <td> #{m.quantity} </td>
+                        </tr> 
+                    </c:forEach>
+                </table> 
+                <h:commandLink value="Вернуться к списку заказов" action="/HeadSelectOrders.xtml"/>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

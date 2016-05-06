@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Добавить нового кладовщика</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Добавить нового кладовщика"/>
+                </h2>
+                <table>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="ФИО" for="fio"/>
+                        </th>
+                        <th>
+                            <h:inputText id="fio" value="#{adminStorekeeperBean.w.fio}" required="true">  
+                            
+
+                            </h:inputText>                                                                   
+                            
+                        </th>
+                        <th>
+                            <h:message for="fio" style="color:red" /> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Опыт работы" for="work_exp"/>
+                        </th>
+                        <th>
+                       <h:inputText id="work_exp" value="#{adminStorekeeperBean.w.workExp}" required="true">
+                            </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="work_exp" style="color:red" /> 
+                        </th>
+                    </tr> 
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Зарплата" for="salary"/>
+                        </th>
+                        <th>
+                            <h:inputText id="salary" value="#{adminStorekeeperBean.w.salary}" required="true">  </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="salary" style="color:red" /> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Имя пользователя" for="login"/>
+                        </th>
+                        <th>
+                            <h:inputText id="login" value="#{adminStorekeeperBean.w.login}" required="true">  </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="login" style="color:red" /> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Пароль" for="password"/>
+                        </th>
+                        <th>
+                            <h:inputText id="password" value="#{adminStorekeeperBean.w.password}" required="true">  </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="password" style="color:red" /> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h:outputLabel value="Должность" for="position"/>
+                        </th>
+                        <th>
+                            <h:inputText id="position" value="#{adminStorekeeperBean.w.position}" required="true">  </h:inputText>                                                                   
+                        </th>
+                        <th>
+                            <h:message for="position" style="color:red" /> 
+                        </th>
+                    </tr>
+                    
+                    <tr>
+                        <th></th>
+                        <th>
+                            <h:commandLink value="Добавить кладовщика" action="#{adminStorekeeperBean.insertStorekeeper()}"/>
+
+                        </th>
+                    </tr>
+                </table>
+                <div><h:commandLink value="Назад" action="/HomeAdmin.xhtml" /> </div>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

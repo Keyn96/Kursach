@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Информация об операции</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <h1>Информация об операции</h1>
+        <f:view>   
+            <tr>
+            </tr>
+            <h:form>
+                <h2>
+                    <h:outputLabel value="Операция "/>
+
+                </h2>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID операции</td>
+                        <td> Тип операции </td> 
+                        <td> Номер накладной </td>
+                        <td> Стоимость накладной </td> 
+                        <td> ID кладовщика проводившего операцию </td>
+
+
+                    </tr> 
+                        <tr> 
+                            <td> #{op.idOperation} </td>
+                            <td> #{op.type} </td> 
+                            <td> #{op.numberInvoice} </td>
+                            <td> #{op.cost} </td> 
+                            <td> #{op.idWorker} </td>
+
+                        </tr> 
+                </table> 
+                <br/>
+                <br/>
+                <br/>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID материала</td>
+                        <td> Название </td> 
+                        <td> Вес </td>
+                        <td> Производитель </td> 
+                        <td> Стоимость </td>
+                        <td> Количество </td>
+
+                    </tr> 
+                    <c:forEach items="#{headOperationBean.selectMaterial(headOperationBean.op.idOperation)}" var="m">
+                        <tr> 
+                            <td> #{m.idMaterial} </td>
+                            <td> #{m.name} </td> 
+                            <td> #{m.weight} </td>
+                            <td> #{m.manufacturer} </td> 
+                            <td> #{m.cost} </td>
+                            <td> #{m.quantity} </td>
+                        </tr> 
+                    </c:forEach>
+                </table> 
+                <br />
+                <h:commandLink value="Вернутся к списку операций" action="/HeadSelectOperation.xhtml"/>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

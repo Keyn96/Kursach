@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="krcss.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <f:view>
+        <c:choose>
+            <c:when test="${!empty request.remoteUser}">
+                <h2>
+                    <h:outputLabel value="Вы вошли как #{request.remoteUser}"/>
+                </h2>
+                <h:form>
+                    <h:commandButton  value="Выход" action="#{autorisationBean.logout()}" />
+                    <br/><br/>
+                    <h:commandButton value="Домашняя страница администратора" rendered="#{request.isUserInRole('admin')}" action="/HomeAdmin.xhtml"/>
+                    <br/><br/>
+                    <h:commandButton value="Домашняя страница кладовщика" rendered="#{request.isUserInRole('storekeeper')}" action="/HomeStorekeeper.xhtml"/>
+                    <br/><br/>
+                    <h:commandButton value="Домашняя страница начальника" rendered="#{request.isUserInRole('head')}" action="/HomeHead.xhtml"/>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                <f:view> 
+                    <h:form> 
+                        <h2> 
+                            <h:outputLabel value="Вы не авторизованы!"/> 
+                        </h2> 
+                        <br/>
+                        <h:commandButton value="Войти" action="/login.xhtml"/>
+                    </h:form> 
+                </f:view>
+            </c:otherwise>
+        </c:choose>
+
+        </f:view>
+    </h:body>
+</html>
+

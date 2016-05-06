@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ManageBean;
+
+//import com.dao.*;
+//import com.model.*;
+
+import DAO.AdminInt;
+import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import modelDB1.Material;
+import modelDB1.Worker;
+import modelDB2.Supplier;
+
+/**
+ *
+ * @author НР
+ */
+@Named(value="selectAdminBean")
+@SessionScoped
+public class SelectAdminBean implements Serializable{
+
+   @EJB
+         private AdminInt adm;
+    /**
+     * Creates a new instance of SelectAdminBean
+     */
+    public SelectAdminBean() {
+    }
+
+    public List<Worker> selectWorkers() throws Exception {
+        return adm.selectWorkers();
+    }
+
+    public List<Material> selectMaterials() {
+        return adm.selectMaterials();
+    }
+public List<Supplier> selectOpts() {
+        return adm.selectSuppliers();
+    }
+}
