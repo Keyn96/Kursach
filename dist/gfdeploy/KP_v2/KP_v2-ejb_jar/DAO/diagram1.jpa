@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="modelDB1" v="1.5.4" status="GENERATED" xs="false" id="_14652305042081" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity xre="false" compositePrimaryKeyClass="OperationPK" sm="false" abs="false" class="Operation" visibile="true" minimized="false" rootElement="_14652305042081" id="_14652305044112">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="type" id="_14652305044264">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=20)"/>
+                <jpa:column name="type"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="numberInvoice" id="_14652305044265">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="numberInvoice"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="cost" id="_14652305044266">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="cost"/>
+            </basic>
+            <many-to-one optional="false" connected-entity-id="_146523050484817" connected-attribute-id="_146523050486325" visibile="true" name="idWorker" id="_14652305046608">
+                <join-column name="id_worker" referenced-column="_146523050484818"/>
+            </many-to-one>
+            <many-to-many own="true" collection-type="java.util.Collection" connected-entity-id="_14652305047389" connected-attribute-id="_146523050473816" visibile="true" name="materialCollection" id="_14652305044267">
+                <join-table name="operation_material">
+                    <jpa:join-column name="id_operation"/>
+                    <jpa:inverse-join-column name="id_material" referenced-column="_146523050473810"/>
+                </join-table>
+            </many-to-many>
+            <jpa:id attribute-type="Integer" visibile="true" name="idOperation" id="_14652305044263">
+                <jpa:column name="id_operation"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id_operation"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="Operation.findAll">
+            <jpa:query>SELECT o FROM Operation o</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Operation.findByIdOperation">
+            <jpa:query>SELECT o FROM Operation o WHERE o.idOperation = :idOperation</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Operation.findByType">
+            <jpa:query>SELECT o FROM Operation o WHERE o.type = :type</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Operation.findByNumberInvoice">
+            <jpa:query>SELECT o FROM Operation o WHERE o.numberInvoice = :numberInvoice</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Operation.findByCost">
+            <jpa:query>SELECT o FROM Operation o WHERE o.cost = :cost</jpa:query>
+        </jpa:nq>
+        <jpa:table name="operation"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="MaterialPK" sm="false" abs="false" class="Material" visibile="true" minimized="false" rootElement="_14652305042081" id="_14652305047389">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="name" id="_146523050473811">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=30)"/>
+                <jpa:column name="name"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="weight" id="_146523050473812">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="weight"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="manufacturer" id="_146523050473813">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=30)"/>
+                <jpa:column name="manufacturer"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="cost" id="_146523050473814">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="cost"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="quantity" id="_146523050473815">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="quantity"/>
+            </basic>
+            <many-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_14652305044112" connected-attribute-id="_14652305044267" visibile="true" name="operationCollection" id="_146523050473816"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idMaterial" id="_146523050473810">
+                <jpa:column name="id_material"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id_material"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="Material.findAll">
+            <jpa:query>SELECT m FROM Material m</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Material.findByIdMaterial">
+            <jpa:query>SELECT m FROM Material m WHERE m.idMaterial = :idMaterial</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Material.findByName">
+            <jpa:query>SELECT m FROM Material m WHERE m.name = :name</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Material.findByWeight">
+            <jpa:query>SELECT m FROM Material m WHERE m.weight = :weight</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Material.findByManufacturer">
+            <jpa:query>SELECT m FROM Material m WHERE m.manufacturer = :manufacturer</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Material.findByCost">
+            <jpa:query>SELECT m FROM Material m WHERE m.cost = :cost</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Material.findByQuantity">
+            <jpa:query>SELECT m FROM Material m WHERE m.quantity = :quantity</jpa:query>
+        </jpa:nq>
+        <jpa:table name="material"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="WorkerPK" sm="false" abs="false" class="Worker" visibile="true" minimized="false" rootElement="_14652305042081" id="_146523050484817">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="fio" id="_146523050486319">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=50)"/>
+                <jpa:column name="fio"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="workExp" id="_146523050486320">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="work_exp"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="salary" id="_146523050486321">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="salary"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="login" id="_146523050486322">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=20)"/>
+                <jpa:column name="login"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="password" id="_146523050486323">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=255)"/>
+                <jpa:column name="password"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="position" id="_146523050486324">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=15)"/>
+                <jpa:column name="position"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_14652305044112" connected-attribute-id="_14652305046608" visibile="true" name="operationCollection" id="_146523050486325">
+                <cascade>
+                    <jpa:cascade-all/>
+                </cascade>
+            </one-to-many>
+            <jpa:id attribute-type="Integer" visibile="true" name="idWorker" id="_146523050484818">
+                <jpa:column name="id_worker"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id_worker"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="Worker.findAll">
+            <jpa:query>SELECT w FROM Worker w</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findByIdWorker">
+            <jpa:query>SELECT w FROM Worker w WHERE w.idWorker = :idWorker</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findByFio">
+            <jpa:query>SELECT w FROM Worker w WHERE w.fio = :fio</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findByWorkExp">
+            <jpa:query>SELECT w FROM Worker w WHERE w.workExp = :workExp</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findBySalary">
+            <jpa:query>SELECT w FROM Worker w WHERE w.salary = :salary</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findByLogin">
+            <jpa:query>SELECT w FROM Worker w WHERE w.login = :login</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findByPassword">
+            <jpa:query>SELECT w FROM Worker w WHERE w.password = :password</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Worker.findByPosition">
+            <jpa:query>SELECT w FROM Worker w WHERE w.position = :position</jpa:query>
+        </jpa:nq>
+        <jpa:table name="worker"/>
+    </jpa:entity>
+    <jpa:diagram>
+        <plane elementRef="_14652305042081"/>
+    </jpa:diagram>
+</jpa:entity-mappings>
