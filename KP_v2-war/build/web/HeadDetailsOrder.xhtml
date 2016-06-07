@@ -4,28 +4,42 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <h:head>
-        <title>Информация об операции</title>
+        <title>Информация о заказе</title>
         <link rel="stylesheet" href="krcss.css" type="text/css"></link>
     </h:head>
     <h:body>
-        <h1>Информация об операции</h1>
+        <h1>Информация о заказе</h1>
         <f:view>   
             <tr>
             </tr>
             <h:form>
                 <h2>
-                    <h:outputLabel value="Операция "/>
+                    <h:outputLabel value="Заказ "/>
 
                 </h2>
-                         ID операции                            #{op.idOperation} 
-                         Тип операции                           #{op.type}
-                         Номер накладной                        #{op.numberInvoice} 
-                         Стоимость накладной                    #{op.cost} 
-                         ID кладовщика проводившего операцию    #{op.idWorker}
-                <br/>
-                <br/>
-                <br/>
+                <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
+                    <tr>
+                        <td> ID заказа</td>
+                        <td> Дата создания </td> 
+                        <td> ID сотрудника </td>
+                        <td> Статус </td> 
+
+
+                    </tr> 
+                    <c:forEach items="#{headOrderBean.selectOrder()}" var="op">
+                        <tr> 
+                            <td> #{op.idOrder} </td>
+                            <td> #{op.data_create} </td> 
+                            <td> #{op.idWorker} </td>
+                            <td> #{op.status} </td> 
+
+
+                        </tr> 
+                    </c:forEach>
+                </table> 
+
                 <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
                     <tr>
                         <td> ID материала</td>
@@ -36,7 +50,7 @@
                         <td> Количество </td>
 
                     </tr> 
-                    <c:forEach items="#{headOperationBean.selectMaterial(headOperationBean.op.idOperation)}" var="m">
+                    <c:forEach items="#{headOrderBean.selectMaterial()}" var="m">
                         <tr> 
                             <td> #{m.idMaterial} </td>
                             <td> #{m.name} </td> 
@@ -48,7 +62,9 @@
                     </c:forEach>
                 </table> 
                 <br />
-                <h:commandLink value="Вернутся к списку операций" action="/HeadSelectOperation.xhtml"/>
+                <h:commandLink value="Редактировать выбранный заказ" action="#{headOrderBean.viewSelectOrder(op.idOrder)}"/>
+                <h:commandLink value="Вернуться к списку заказов" action="/HeadSelectOrders.xtml"/>
+                <br />
             </h:form>
         </f:view>
     </h:body>

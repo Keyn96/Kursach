@@ -41,18 +41,18 @@ public class HeadOperationBean implements Serializable{
     public void setOp(Operation op) {
         this.op = op;
     }
-    private  int id_operation;
+    private  int idOperation;
 
-    public int getId_operation() {
-        return id_operation;
+    public int getIdOperation() {
+        return idOperation;
     }
 
-    public void setId_operation(int id_operation) {
-        this.id_operation = id_operation;
+    public void setIdOperation(int idOperation) {
+        this.idOperation = idOperation;
     }
 
-    public String viewSelectOperation(int id_operation) {
-        this.op=selectOperation(id_operation);
+    public String viewSelectOperation(int idOperation) {
+        this.op=hdm.selectOperation(idOperation);
         return "/HeadDetailsOperation.xhtml";
     }
 
@@ -60,12 +60,12 @@ public class HeadOperationBean implements Serializable{
         return hdm.selectOperations();
     }
 
-    public Operation selectOperation(int id_operation) {
-        return hdm.selectOperation(id_operation);
+    public Operation selectOperation(int idOperation) {
+        return hdm.selectOperation(idOperation);
     }
 
-    public List<Material> selectMaterial(int id_operation) {
-        return hdm.selectOperation_Material(id_operation);
+    public List<Material> selectMaterial(int idOperation) {
+        return hdm.selectOperation_Material(idOperation);
     }
 
 }

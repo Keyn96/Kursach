@@ -5,27 +5,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Информация об операции</title>
+        <title>Список материалов</title>
         <link rel="stylesheet" href="krcss.css" type="text/css"></link>
     </h:head>
     <h:body>
-        <h1>Информация об операции</h1>
+        <h1>Список материалов</h1>
         <f:view>   
             <tr>
             </tr>
             <h:form>
                 <h2>
-                    <h:outputLabel value="Операция "/>
+                    <h:outputLabel value="Материалы "/>
 
                 </h2>
-                         ID операции                            #{op.idOperation} 
-                         Тип операции                           #{op.type}
-                         Номер накладной                        #{op.numberInvoice} 
-                         Стоимость накладной                    #{op.cost} 
-                         ID кладовщика проводившего операцию    #{op.idWorker}
-                <br/>
-                <br/>
-                <br/>
                 <table cellspacing="1" cellpadding="1"  width="80%" border="2" >  
                     <tr>
                         <td> ID материала</td>
@@ -36,7 +28,7 @@
                         <td> Количество </td>
 
                     </tr> 
-                    <c:forEach items="#{headOperationBean.selectMaterial(headOperationBean.op.idOperation)}" var="m">
+                    <c:forEach items="#{storekeeperMaterialBean.selectMaterials()}" var="m">
                         <tr> 
                             <td> #{m.idMaterial} </td>
                             <td> #{m.name} </td> 
@@ -44,11 +36,14 @@
                             <td> #{m.manufacturer} </td> 
                             <td> #{m.cost} </td>
                             <td> #{m.quantity} </td>
+                            <td> <h:commandLink value="Редактировать информацию о материале"  action="#{storekeeperMaterialBean.viewSelectMaterial(m.idMaterial)}"/></td>
                         </tr> 
                     </c:forEach>
-                </table> 
+                </table>      
+
                 <br />
-                <h:commandLink value="Вернутся к списку операций" action="/HeadSelectOperation.xhtml"/>
+                <br />
+                <h:commandLink value="Назад" action="/HomeStorekeeper.xhtml"/>
             </h:form>
         </f:view>
     </h:body>
