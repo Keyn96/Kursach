@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="modelDB2" v="1.5.4" status="GENERATED" xs="false" id="_146523057555331" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity xre="false" compositePrimaryKeyClass="SupplierPK" sm="false" abs="false" class="Supplier" visibile="true" minimized="false" rootElement="_146523057555331" id="_146523057581932">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="name" id="_146523057581934">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=45)"/>
+                <jpa:column name="name"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="telephoneNumber" id="_146523057581935">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=45)"/>
+                <jpa:column name="telephoneNumber"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_146523057591237" connected-attribute-id="_146523057592842" visibile="true" name="ordersCollection" id="_146523057581936">
+                <cascade>
+                    <jpa:cascade-all/>
+                </cascade>
+            </one-to-many>
+            <jpa:id attribute-type="Integer" visibile="true" name="id" id="_146523057581933">
+                <jpa:column name="id"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="Supplier.findAll">
+            <jpa:query>SELECT s FROM Supplier s</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Supplier.findById">
+            <jpa:query>SELECT s FROM Supplier s WHERE s.id = :id</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Supplier.findByName">
+            <jpa:query>SELECT s FROM Supplier s WHERE s.name = :name</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Supplier.findByTelephoneNumber">
+            <jpa:query>SELECT s FROM Supplier s WHERE s.telephoneNumber = :telephoneNumber</jpa:query>
+        </jpa:nq>
+        <jpa:table name="supplier"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="OrdersPK" sm="false" abs="false" class="Orders" visibile="true" minimized="false" rootElement="_146523057555331" id="_146523057591237">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="dateCreate" id="_146523057591239">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="dateCreate"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="status" id="_146523057591240">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=45)"/>
+                <jpa:column name="status"/>
+            </basic>
+            <many-to-one optional="false" connected-entity-id="_146523057581932" connected-attribute-id="_146523057581936" visibile="true" name="idSupplier" id="_146523057592842">
+                <join-column name="id_supplier" referenced-column="_146523057581933"/>
+            </many-to-one>
+            <many-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_146523057603743" connected-attribute-id="_146523057603748" visibile="true" name="materialorderCollection" id="_146523057591241"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idOrder" id="_146523057591238">
+                <jpa:column name="id_order"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id_order"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="Orders.findAll">
+            <jpa:query>SELECT o FROM Orders o</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Orders.findByIdOrder">
+            <jpa:query>SELECT o FROM Orders o WHERE o.idOrder = :idOrder</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Orders.findByDateCreate">
+            <jpa:query>SELECT o FROM Orders o WHERE o.dateCreate = :dateCreate</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Orders.findByStatus">
+            <jpa:query>SELECT o FROM Orders o WHERE o.status = :status</jpa:query>
+        </jpa:nq>
+        <jpa:table name="orders"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="MaterialorderPK" sm="false" abs="false" class="Materialorder" visibile="true" minimized="false" rootElement="_146523057555331" id="_146523057603743">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="name" id="_146523057603745">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=45)"/>
+                <jpa:column name="name"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="cost" id="_146523057603746">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="cost"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="quantity" id="_146523057603747">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="quantity"/>
+            </basic>
+            <many-to-many own="true" collection-type="java.util.Collection" connected-entity-id="_146523057591237" connected-attribute-id="_146523057591241" visibile="true" name="ordersCollection" id="_146523057603748">
+                <join-table name="order_material">
+                    <jpa:join-column name="id_material"/>
+                    <jpa:inverse-join-column name="id_order" referenced-column="_146523057591238"/>
+                </join-table>
+            </many-to-many>
+            <jpa:id attribute-type="Integer" visibile="true" name="idMaterial" id="_146523057603744">
+                <jpa:column name="id_material"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="id_material"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="Materialorder.findAll">
+            <jpa:query>SELECT m FROM Materialorder m</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Materialorder.findByIdMaterial">
+            <jpa:query>SELECT m FROM Materialorder m WHERE m.idMaterial = :idMaterial</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Materialorder.findByName">
+            <jpa:query>SELECT m FROM Materialorder m WHERE m.name = :name</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Materialorder.findByCost">
+            <jpa:query>SELECT m FROM Materialorder m WHERE m.cost = :cost</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="Materialorder.findByQuantity">
+            <jpa:query>SELECT m FROM Materialorder m WHERE m.quantity = :quantity</jpa:query>
+        </jpa:nq>
+        <jpa:table name="materialorder"/>
+    </jpa:entity>
+    <jpa:diagram>
+        <plane elementRef="_146523057555331"/>
+    </jpa:diagram>
+</jpa:entity-mappings>

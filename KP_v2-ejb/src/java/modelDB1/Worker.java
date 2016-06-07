@@ -43,8 +43,7 @@ public class Worker implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_worker")
     private Integer idWorker;
     @Basic(optional = false)

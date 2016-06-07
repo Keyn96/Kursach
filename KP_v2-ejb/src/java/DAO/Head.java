@@ -7,6 +7,8 @@ package DAO;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import modelDB1.Material;
@@ -79,6 +81,7 @@ public class Head implements HeadInt{
         return mats;
     }
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void insertOrder(Orders order)
     {
         initial();

@@ -7,6 +7,8 @@ package DAO;
 
 import java.util.Date;
 import java.util.List;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -39,9 +41,11 @@ public class Dao {
     {
         em.flush();
     }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void createMaterial(Material material) {
         em.persist(material);
     }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void updateMaterial(Material material) {
         em.merge(material);
     }
@@ -104,6 +108,7 @@ public class Dao {
     public Operation selectOperation(int id_operation) {
        return em.find(Operation.class, id_operation);
     }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Orders createOrder(Orders order) {
        Orders ord = em1.merge(order);
        return ord;
@@ -120,14 +125,16 @@ public class Dao {
        return em1.find(Orders.class, id_order);
     }
     public Orders selectOrderDate(Date date) {
-       Query namedQuery=em1.createNamedQuery("Orders.findByDateCreate", Materialorder.class);
-        namedQuery.setParameter("dateCreate", date);
+       Query namedQuery=em1.createNamedQuery("Orders.findByIdOrder", Materialorder.class);
+        namedQuery.setParameter("idOrder", 1);
         return (Orders)namedQuery.getSingleResult();
     }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void createMaterialorder(Materialorder material) {
         em1.persist(material);
         em1.flush();
     }
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Materialorder selectMaterialorder(String nam) {
         Query namedQuery=em1.createNamedQuery("Materialorder.findByName", Materialorder.class);
         namedQuery.setParameter("name", nam);

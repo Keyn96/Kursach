@@ -8,6 +8,8 @@ package DAO;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import modelDB1.Material;
@@ -47,6 +49,7 @@ public class Storekeeper implements StorekeeperInt{
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void updateMaterial(Material material) {
         initial();
         if(material.getQuantity()<100)
@@ -60,6 +63,7 @@ public class Storekeeper implements StorekeeperInt{
                      o=ord;
                  }
              }
+             o=dao.selectOrder(2);
              if(o.getIdOrder()==null){
              o.setIdSupplier(dao.selectSupplier(2));
              Date d=new Date(System.currentTimeMillis());
